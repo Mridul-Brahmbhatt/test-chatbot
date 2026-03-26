@@ -83,13 +83,20 @@ OPENAI_API_KEY=your_api_key_here
 ```bash
 uvicorn app.main:app --reload
 ```
+or
+```bash
+python3 -m uvicorn app.main:app --reload
+```
 
 ### 2. Start Frontend (Streamlit)
 
 ```bash
 streamlit run frontend/app.py
 ```
-
+or
+```bash
+python3 -m streamlit run frontend/app.py
+```
 ---
 
 ## 🧠 Architecture
