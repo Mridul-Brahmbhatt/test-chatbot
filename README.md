@@ -120,10 +120,6 @@ graph TD
 * Source attribution for answers
 * Multi-turn conversation support
 * Fallback responses for unknown queries
-* Optional enhancements:
-
-  * Confidence score
-  * Query suggestions
 
 ---
 
@@ -154,14 +150,3 @@ graph TD
 * [ ] Logs or monitoring enabled
 
 ---
-
-## 📌 Future Improvements
-
-* Add authentication
-* Improve retrieval accuracy
-* Add caching for faster responses
-* UI enhancements
-
----
-
-
