@@ -79,7 +79,15 @@ OPENAI_API_KEY=your_api_key_here
 ## ▶️ Running the Application
 
 ### 1. Start Backend (FastAPI)
+run
+```bash
+# Mac/Linux
+source .venv/bin/activate
 
+# Windows
+.venv\Scripts\activate
+```
+then run
 ```bash
 uvicorn app.main:app --reload
 ```
