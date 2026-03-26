@@ -100,9 +100,9 @@ graph TD
     Frontend -->|API Call| Backend[FastAPI / RAG Logic]
     Backend --> Intent[Intent Classification]
 
-    Intent -->|NEC| NEC[NEC Vector Store (Chroma)]
-    Intent -->|Company| Wattmonk[Wattmonk Vector Store (Chroma)]
-    Intent -->|General| LLM[LLM (OpenAI / Ollama / Gemini)]
+    Intent -->|NEC| NEC[NEC Vector Store - Chroma]
+    Intent -->|Company| Wattmonk[Wattmonk Vector Store - Chroma]
+    Intent -->|General| LLM[LLM - OpenAI / Ollama / Gemini]
 
     NEC -->|Retrieved Docs| Backend
     Wattmonk -->|Retrieved Docs| Backend
