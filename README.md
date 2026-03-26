@@ -53,7 +53,7 @@ uvicorn app.main:app --reload
 2. Start frontend
 streamlit run frontend/app.py
 
-
+```mermaid
 graph TD
     User[User] -->|Types question| Frontend[Streamlit UI]
     Frontend -->|Calls API / function| Backend[FastAPI / RAG logic]
@@ -66,7 +66,7 @@ graph TD
     LLM -->|Generates answer| Backend
     Backend -->|Returns answer| Frontend
     Frontend -->|Displays answer + source| User
-
+```
 
 ## Features
 Multi-context handling (General, NEC, Wattmonk)
