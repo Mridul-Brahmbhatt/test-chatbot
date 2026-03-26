@@ -1,80 +1,169 @@
 # RAG-Based Chatbot
 
-A **Retrieval-Augmented Generation (RAG)** chatbot that answers:  
-- General queries (via LLM)  
-- NEC code guidelines (from `414.pdf`)  
-- Company-specific queries (from Wattmonk PDFs)
+A **Retrieval-Augmented Generation (RAG)** chatbot that can answer:
+
+* General queries (via LLM)
+* NEC code guidelines (from `414.pdf`)
+* Company-specific queries (from Wattmonk PDFs)
 
 ---
 
 ## 📁 Project Structure
+
+```
 rag-chatbot/
 │
-├── app/ # Backend code
-│ ├── main.py
-│ ├── rag.py
-│ ├── vectorstore.py
-│ └── ...
-├── frontend/ # Streamlit frontend
-│ └── app.py
-├── data/ # PDF knowledge sources
-│ ├── 414.pdf
-│ ├── Wattmonk (1) (1) (1).pdf
-│ └── Wattmonk Information (1).pdf
-├── chroma_db/ # Precomputed embeddings (for fast load)
-├── .env # API keys (not in GitHub)
+├── app/                  # Backend code
+│   ├── main.py
+│   ├── rag.py
+│   ├── vectorstore.py
+│   └── ...
+│
+├── frontend/             # Streamlit frontend
+│   └── app.py
+│
+├── data/                 # PDF knowledge sources
+│   ├── 414.pdf
+│   ├── Wattmonk (1) (1) (1).pdf
+│   └── Wattmonk Information (1).pdf
+│
+├── chroma_db/            # Precomputed embeddings (for fast loading)
+├── .env                  # API keys (DO NOT commit to GitHub)
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
-## Installation
+## ⚙️ Installation
 
-1. Clone the repo:
+1. Clone the repository:
+
+```bash
 git clone <repo-url>
 cd rag-chatbot
+```
 
 2. Create and activate a virtual environment:
+
+**Mac/Linux:**
+
+```bash
 python -m venv .venv
-source .venv/bin/activate   # Mac/Linux
-.venv\Scripts\activate      # Windows
+source .venv/bin/activate
+```
+
+**Windows:**
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
 
 3. Install dependencies:
 
-4. Add .env file with your API keys:
-   
-5. OPENAI_API_KEY=sk-xxxxxxxxxxxx
+```bash
+pip install -r requirements.txt
+```
 
-## Running Locally
+4. Create a `.env` file and add your API key(s):
 
-1. Start backend:
+```env
+OPENAI_API_KEY=your_api_key_here
+```
+
+> You can replace OpenAI with other providers (Gemini, Ollama, etc.) by modifying `llm.py`.
+
+---
+
+## ▶️ Running the Application
+
+### 1. Start Backend (FastAPI)
+
+```bash
 uvicorn app.main:app --reload
+```
 
-2. Start frontend
+### 2. Start Frontend (Streamlit)
+
+```bash
 streamlit run frontend/app.py
+```
+
+---
+
+## 🧠 Architecture
 
 ```mermaid
 graph TD
-    User[User] -->|Types question| Frontend[Streamlit UI];
-    Frontend -->|Calls API / function| Backend[FastAPI / RAG logic];
-    Backend --> Intent[Intent Classification];
-    Intent -->|NEC| NEC[NEC Vector Store (Chroma)];
-    Intent -->|Company| Wattmonk[Wattmonk Vector Store (Chroma)];
-    Intent -->|General| LLM[OpenAI / Hugging Face LLM];
-    NEC -->|Retrieved docs| Backend;
-    Wattmonk -->|Retrieved docs| Backend;
-    LLM -->|Generates answer| Backend;
-    Backend -->|Returns answer| Frontend;
-    Frontend -->|Displays answer + source| User;
+    User[User] -->|Types question| Frontend[Streamlit UI]
+    Frontend -->|API Call| Backend[FastAPI / RAG Logic]
+    Backend --> Intent[Intent Classification]
+
+    Intent -->|NEC| NEC[NEC Vector Store (Chroma)]
+    Intent -->|Company| Wattmonk[Wattmonk Vector Store (Chroma)]
+    Intent -->|General| LLM[LLM (OpenAI / Ollama / Gemini)]
+
+    NEC -->|Retrieved Docs| Backend
+    Wattmonk -->|Retrieved Docs| Backend
+    LLM -->|Generated Answer| Backend
+
+    Backend -->|Response| Frontend
+    Frontend -->|Display Answer + Source| User
 ```
 
-## Features
-Multi-context handling (General, NEC, Wattmonk)
-Source attribution
-Multi-turn conversation
-Fallback responses for unknown queries
-Optional: confidence score, query suggestions
+---
 
-this app was tested using ollama 
-you can use your own api key
-if you want to change the llm, you can edit the llm.py file
+## ✨ Features
+
+* Multi-context handling (General, NEC, Wattmonk)
+* Source attribution for answers
+* Multi-turn conversation support
+* Fallback responses for unknown queries
+* Optional enhancements:
+
+  * Confidence score
+  * Query suggestions
+
+---
+
+## 🧪 Notes
+
+* This app was tested using **Ollama (Llama 3.2)**.
+* You can use your own API key (OpenAI, Gemini, etc.).
+* To change the LLM provider, update the `llm.py` file accordingly.
+
+---
+
+## 🔐 Security Best Practices
+
+* Never commit `.env` files to GitHub
+* Keep API keys secure using environment variables
+* Use `.gitignore` to exclude sensitive files
+
+---
+
+## 🚀 Deployment Checklist
+
+* [ ] Working deployed application with public URL
+* [ ] Environment variables properly configured
+* [ ] API keys secured (not exposed in code)
+* [ ] Responsive design for mobile devices
+* [ ] Error handling and user feedback
+* [ ] Loading states for better UX
+* [ ] Logs or monitoring enabled
+
+---
+
+## 📌 Future Improvements
+
+* Add authentication
+* Improve retrieval accuracy
+* Add caching for faster responses
+* UI enhancements
+
+---
+
+## 📄 License
+
+Specify your license here (MIT, Apache 2.0, etc.)
