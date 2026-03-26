@@ -55,17 +55,17 @@ streamlit run frontend/app.py
 
 ```mermaid
 graph TD
-    User[User] -->|Types question| Frontend[Streamlit UI]
-    Frontend -->|Calls API / function| Backend[FastAPI / RAG logic]
-    Backend --> Intent[Intent Classification]
-    Intent -->|NEC| NEC[NEC Vector Store (Chroma)]
-    Intent -->|Company| Wattmonk[Wattmonk Vector Store (Chroma)]
-    Intent -->|General| LLM[OpenAI / Hugging Face LLM]
-    NEC -->|Retrieved docs| Backend
-    Wattmonk -->|Retrieved docs| Backend
-    LLM -->|Generates answer| Backend
-    Backend -->|Returns answer| Frontend
-    Frontend -->|Displays answer + source| User
+    User[User] -->|Types question| Frontend[Streamlit UI];
+    Frontend -->|Calls API / function| Backend[FastAPI / RAG logic];
+    Backend --> Intent[Intent Classification];
+    Intent -->|NEC| NEC[NEC Vector Store (Chroma)];
+    Intent -->|Company| Wattmonk[Wattmonk Vector Store (Chroma)];
+    Intent -->|General| LLM[OpenAI / Hugging Face LLM];
+    NEC -->|Retrieved docs| Backend;
+    Wattmonk -->|Retrieved docs| Backend;
+    LLM -->|Generates answer| Backend;
+    Backend -->|Returns answer| Frontend;
+    Frontend -->|Displays answer + source| User;
 ```
 
 ## Features
