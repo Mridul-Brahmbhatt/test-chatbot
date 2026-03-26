@@ -101,3 +101,11 @@ if user_input:
         "role": "assistant",
         "content": bot_reply
     })
+    # frontend/app.py
+
+@st.cache_resource
+def load_retrievers():
+    from vectorstore import get_vectorstore
+    nec = get_vectorstore("nec").as_retriever(search_kwargs={"k":2})
+    watt = get_vectorstore("wattmonk").as_retriever(search_kwargs={"k":2})
+    return nec, watt
