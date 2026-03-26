@@ -1,0 +1,9 @@
+streamlit
+requests
+langchain
+langchain-ollama
+langchain-community
+sqlalchemy
+psycopg2-binary
+python-dotenv
+chromadb
