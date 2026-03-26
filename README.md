@@ -142,7 +142,7 @@ graph TD
 
 * This app was tested using **Ollama (Llama 3.2)**.
 * You can use your own API key (OpenAI, Gemini, etc.).
-* To change the LLM provider, update the `llm.py` file accordingly.
+* To change the LLM provider, update the `llm.py` and the `config.py` files accordingly.
 
 ---
 
